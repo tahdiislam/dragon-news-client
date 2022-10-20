@@ -6,7 +6,7 @@ import News from "../Pages/News";
 
 export const router = createBrowserRouter([
     {path: '/', element: <Main/>, children: [
-        {path: '/', element: <Home/>},
+        { path: '/', element: <Home />, loader: () => fetch('http://localhost:5000/news')},
         { path: '/category/:id', element: <Catagory />, loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)},
         {path: 'news/:id', element: <News/>}
     ]}
