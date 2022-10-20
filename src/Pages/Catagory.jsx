@@ -1,9 +1,11 @@
 import React from 'react';
+import { useLoaderData } from 'react-router-dom';
 
 const Catagory = () => {
+    const news = useLoaderData()
     return (
         <div>
-            <h4>This is catagory</h4>
+            <h2>This is category has news : {news.length}</h2>
         </div>
     );
 };

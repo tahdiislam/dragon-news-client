@@ -5,7 +5,7 @@ import LeftSideNav from './LeftSideNav';
 const Header = () => {
     return (
         <div>
-            <Navbar collapseOnSelect className='mb-4' expand="lg" bg="light" variant="light">
+            <Navbar collapseOnSelect className='mb-4 shadow' expand="lg" bg="light" variant="light">
                 <Container>
                     <Navbar.Brand href="#home">Dragon News</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
