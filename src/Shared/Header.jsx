@@ -1,12 +1,19 @@
 import React, { useContext } from 'react';
-import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Button, Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { FaUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthProvider';
 import LeftSideNav from './LeftSideNav';
 
 const Header = () => {
-    const {user} = useContext(AuthContext)
+    const { user, logOutUser } = useContext(AuthContext)
+    
+    // log out user 
+    const handleLogOut = () => {
+        logOutUser()
+        .then(() => alert('User Sign Out'))
+        .catch(error => console.error(error.message))
+    }
     return (
         <div>
             <Navbar collapseOnSelect className='mb-4 shadow' expand="lg" bg="light" variant="light">
@@ -33,6 +40,9 @@ const Header = () => {
                             <Nav.Link>
                                 {user?.photoURL ? <Image roundedCircle style={{ height: "30px" }} src={user.photoURL} /> : <FaUser/>}
                             </Nav.Link>
+                            <div>
+                                {user?.uid ? <Button onClick={handleLogOut}>Sign Out</Button> : <Link to="/login"><Button>Sign In</Button></Link>}
+                            </div>
                         </Nav>
                         <div className='d-lg-none'>
                             <LeftSideNav/>
