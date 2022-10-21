@@ -1,12 +1,16 @@
 import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthProvider';
 
 const Login = () => {
     const [error, setError] = useState(null)
     const { logInWithEmailPass } = useContext(AuthContext)
 
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/'
     // log in with email and pass
     const handleFormSubmit = event => {
         setError(null)
@@ -20,6 +24,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                navigate(from, {replace: true})
             })
             .catch(error => {
                 console.error(error.message)
