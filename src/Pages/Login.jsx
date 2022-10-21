@@ -1,13 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { AuthContext } from '../Context/AuthProvider';
 
 const Login = () => {
+    const [error, setError] = useState(null)
     const { logInWithEmailPass } = useContext(AuthContext)
 
     // log in with email and pass
     const handleFormSubmit = event => {
+        setError(null)
         event.preventDefault()
         const form = event.target;
         const email = form.email.value;
@@ -19,7 +21,10 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
             })
-            .catch(error => console.error(error.message))
+            .catch(error => {
+                console.error(error.message)
+                setError(error.message)
+            })
     }
     return (
         <div className='d-flex justify-content-center'>
@@ -39,6 +44,7 @@ const Login = () => {
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
+                <p><small>{error?.split('Firebase:').join('').split('(auth/').join('').split('-').join(' ').split(')').join('').split('Error').join('Error:')}</small></p>
             </Form>
         </div>
     );
