@@ -1,37 +1,37 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../Context/AuthProvider';
 import LeftSideNav from './LeftSideNav';
 
 const Header = () => {
+    const {user} = useContext(AuthContext)
     return (
         <div>
             <Navbar collapseOnSelect className='mb-4 shadow' expand="lg" bg="light" variant="light">
                 <Container>
-                    <Navbar.Brand href="#home">Dragon News</Navbar.Brand>
+                    <Navbar.Brand><Link to="/" style={{textDecoration: "none", color: 'black', fontWeight: "bold"}}>Dragon News</Link></Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link href="#features">Breaking News</Nav.Link>
-                            <Nav.Link href="#pricing">Regular News</Nav.Link>
-                            <Nav.Link href="#pricing">International News</Nav.Link>
+                            <Nav.Link><Link to="/" style={{ textDecoration: "none", color: 'black'}}>Home</Link></Nav.Link>
+                            <Nav.Link><Link to="/" style={{ textDecoration: "none", color: 'black' }}>Regular News</Link></Nav.Link>
+                            <Nav.Link><Link to="/" style={{ textDecoration: "none", color: 'black' }}>International News</Link></Nav.Link>
                             <NavDropdown title="Entertainment" id="collasible-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1">Sports</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">
-                                    Entertainment
-                                </NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.3">Culture</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.4">Arts</NavDropdown.Item>
+                                <NavDropdown.Item><Link to="/" style={{ textDecoration: "none", color: 'black' }}>Sports</Link></NavDropdown.Item>
+                                <NavDropdown.Item><Link to="/" style={{ textDecoration: "none", color: 'black' }}>Entertainment</Link></NavDropdown.Item>
+                                <NavDropdown.Item><Link to="/" style={{ textDecoration: "none", color: 'black' }}>Culture</Link></NavDropdown.Item>
+                                <NavDropdown.Item><Link to="/" style={{ textDecoration: "none", color: 'black' }}>Arts</Link></NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action/3.5">
-                                    All News
+                                <NavDropdown.Item><Link to="/" style={{ textDecoration: "none", color: 'black' }}>All News</Link>
                                 </NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                         <Nav>
-                            {/* <Nav.Link href="#deets">More deets</Nav.Link>
+                            <Nav.Link><Link to="/" style={{ textDecoration: "none", color: 'black' }}>{user?.displayName && user.displayName}</Link></Nav.Link>
                             <Nav.Link eventKey={2} href="#memes">
                                 Dank memes
-                            </Nav.Link> */}
+                            </Nav.Link>
                         </Nav>
                         <div className='d-lg-none'>
                             <LeftSideNav/>
