@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import { AuthContext } from '../Context/AuthProvider';
 
 const Register = () => {
-    const { createUserWithEmailPass } = useContext(AuthContext)
+    const { createUserWithEmailPass, setUserName } = useContext(AuthContext)
 
     // log in with email and pass
     const handleFormSubmit = event => {
@@ -19,6 +19,11 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setUserName(name)
+                .then(() => {
+                    // set name
+                })
+                .catch(error => console.error(error.message))
             })
             .catch(error => console.error(error.message))
     }

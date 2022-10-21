@@ -41,7 +41,9 @@ const Header = () => {
                                 {user?.photoURL ? <Image roundedCircle style={{ height: "30px" }} src={user.photoURL} /> : <FaUser/>}
                             </Nav.Link>
                             <div>
-                                {user?.uid ? <Button onClick={handleLogOut}>Sign Out</Button> : <Link to="/login"><Button>Sign In</Button></Link>}
+                                {user?.uid ? <Button onClick={handleLogOut}>Sign Out</Button> : <>
+                                    <Link to="/login"><Button>Sign In</Button></Link> {"/"} <Link to="/register"><Button>Register</Button></Link>
+                                </>}
                             </div>
                         </Nav>
                         <div className='d-lg-none'>
