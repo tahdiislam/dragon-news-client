@@ -34,7 +34,7 @@ const NewsSummaryCart = ({ news }) => {
                     <Card.Title style={{textAlign: 'start'}}>{title}</Card.Title>
                     <Card.Img src={image_url} variant="top" />
                     <Card.Text style={{textAlign: "justify"}}>
-                        {details.length > 200 ? <p>{details.slice(0, 250)}...<Link to={`/news/${_id}`}>Read More</Link></p> : <p>{details}</p>}
+                        {details.length > 200 ? <>{details.slice(0, 250)}...<Link to={`/news/${_id}`}>Read More</Link></> : <>{details}</>}
                     </Card.Text>
                 </Card.Body>
                 <Card.Footer className="text-muted">
