@@ -6,7 +6,7 @@ import { FaRegBookmark, FaShareAlt, FaStar, FaEye } from "react-icons/fa";
 
 const NewsSummaryCart = ({ news }) => {
     const { title, author, details, rating, image_url, _id, total_view } = news;
-    console.log(news);
+    // console.log(news);
     return (
         <div>
             <Card className="text-center mb-4">

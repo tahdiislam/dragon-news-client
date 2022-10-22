@@ -21,7 +21,7 @@ const PrivateRoute = ({children}) => {
             </Button>
         </div>
     }
-    if(user && user.uid){
+    if (user && user.emailVerified){
         return children;
     }
     return <Navigate to="/login" state={{from: location}} replace/>

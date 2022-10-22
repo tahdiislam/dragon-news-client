@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth"
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth"
 import app from '../firebase/firebase.config';
 
 export const AuthContext = createContext()
@@ -35,24 +35,31 @@ const AuthProvider = ({children}) => {
     }
 
     // set user name 
-    const setUserName = name => {
+    const updateUserProfile = profile => {
         setLoading(true)
-        return updateProfile(auth.currentUser, {
-            displayName: name
+        return updateProfile(auth.currentUser, profile)
+    }
+
+    // send email verification 
+    const emailVerification = () => {
+        return sendEmailVerification(auth.currentUser)
+        .then(() => {
         })
     }
 
     // load user data 
     useEffect( () => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            setUser(currentUser)
+            if (currentUser === null || currentUser.emailVerified){
+                setUser(currentUser)
+            }
             console.log(currentUser);
             setLoading(false)
         })
         return () => unsubscribe()
     },[])
     return (
-        <AuthContext.Provider value={{ user, signInWithProvider, logOutUser, createUserWithEmailPass, logInWithEmailPass, setUserName, loading }}>
+        <AuthContext.Provider value={{ user, signInWithProvider, logOutUser, createUserWithEmailPass, logInWithEmailPass, updateUserProfile, loading, emailVerification, setLoading }}>
             {children}
         </AuthContext.Provider>
     );
