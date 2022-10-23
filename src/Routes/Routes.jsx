@@ -9,22 +9,24 @@ import TermsAndCondition from "../Pages/TermsAndCondition";
 import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
-    {path: '/', element: <Main/>, children: [
-        { path: '/', element: <Home />, loader: () => fetch('http://localhost:5000/news')},
-        { path: '/category/:id', element: <Catagory />, loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)},
-        { 
-            path: 'news/:id', 
-            element: <PrivateRoute><News/></PrivateRoute> , 
-            loader: ({params}) => fetch(`http://localhost:5000/news/${params.id}`)
-        },
-        {
-            path: '/login', element: <Login/>
-        },
-        {
-            path: '/register', element: <Register/>
-        },
-        {
-            path: '/terms', element: <TermsAndCondition/>
-        }
-    ]}
+    {
+        path: '/', element: <Main />, children: [
+            { path: '/', element: <Home />, loader: () => fetch('https://dragon-news-server-snowy.vercel.app/news') },
+            { path: '/category/:id', element: <Catagory />, loader: ({ params }) => fetch(`https://dragon-news-server-snowy.vercel.app/category/${params.id}`) },
+            {
+                path: 'news/:id',
+                element: <PrivateRoute><News /></PrivateRoute>,
+                loader: ({ params }) => fetch(`https://dragon-news-server-snowy.vercel.app/news/${params.id}`)
+            },
+            {
+                path: '/login', element: <Login />
+            },
+            {
+                path: '/register', element: <Register />
+            },
+            {
+                path: '/terms', element: <TermsAndCondition />
+            }
+        ]
+    }
 ])
